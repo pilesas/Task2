@@ -58,17 +58,21 @@ def nash_equilibrium(a):
         for j in range(n):
                 q[j] *= V
                 print(Fraction(Decimal(q[j])).limit_denominator(1000), end='| ') #Fractions
+        if(mina < 0):
+            U += mina
         print("\n| u |", end='| ')
         print(Fraction(Decimal(U)).limit_denominator(1000), '|')
 #RETURN ALL WE BROKE
         for i in range(m):
                 for j in range(n):
                         a[i][j] = -a[i][j]
+                        if(mina < 0):
+                            a[i][j] += mina
         return [U, p, q]
 
-    #MAIN
-A = [[4.0, 0.0, 6.0, 2.0, 2.0, 1.0], [3.0, 8.0, 4.0, 10.0, 4.0, 4.0], [1.0, 2.0, 6.0, 5.0, 0.0, 0.0], 
-     [6.0, 6.0, 4.0, 4.0, 10.0, 3.0], [10.0, 4.0, 6.0, 4.0, 0.0, 9.0], [10.0, 7.0, 0.0, 7.0, 9.0, 8.0]]
+#MAIN
+A = [[2.0, 3.0, -1.0], [1.0, 1.0, 0.0], [1.0, -2.0, -1.0]]
+
 RES = nash_equilibrium(A)
 print(RES)
 
